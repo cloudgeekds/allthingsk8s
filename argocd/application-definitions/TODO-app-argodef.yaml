@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: TODO-app
+  name: todo-app
   namespace: argocd
 spec:
   project: default
