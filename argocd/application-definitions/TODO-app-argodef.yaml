@@ -16,3 +16,4 @@ spec:
     automated:
       selfHeal: false
       prune: true
+      
