@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: TODO-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/cloudgeekds/allthingsk8s.git'
+    path: /apps/TODO-app
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: sandbox
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
