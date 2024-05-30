@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todo-app
+  name: todo-app
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: todo-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      containers:
+      - image: docker.io/cloudgeekds/todo-app:2.0
+        imagePullPolicy: Always
+        name: app
+        env:
+        - name: MYSQL_HOST
+          value: 127.0.0.1
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_PASSWORD
+          value: M1SQLPasswd
+        - name: MYSQL_DB
+          value: todos
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - image: mysql:8.0
+        imagePullPolicy: Always
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: M1SQLPasswd
+        - name: MYSQL_DATABASE
+          value: todos
+        ports:
+        - containerPort: 3306
+          protocol: TCP
+        volumeMounts:
+        - name: todo-mysql-data
+          mountPath: /var/lib/mysql
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      volumes:
+      - name: todo-mysql-data
+        persistentVolumeClaim:
+         claimName: pvc-todo-db
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+
