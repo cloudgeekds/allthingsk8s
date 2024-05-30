@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/cloudgeekds/allthingsk8s.git'
-    path: /apps/TODO-app
+    path: apps/todo-app
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
