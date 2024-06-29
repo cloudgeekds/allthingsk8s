@@ -8,7 +8,7 @@ sudo apt update ; sudo apt upgrade -y
 # Install the packages needed to use the K8s apt repository
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 
-# Add repo for Kubernetes ---- The URL for the repo (line 9) has to be updated everytime a new k8s minor version is going to be deployed (or upgraded to a more recent version)
+# Add repo for Kubernetes ---- The URL for the repo (line 13) has to be updated everytime a new k8s minor version is going to be deployed (or upgraded to a more recent version)
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
