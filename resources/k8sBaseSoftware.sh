@@ -46,7 +46,7 @@ sudo apt install containerd.io -y
 
 # Configure containerd and restart
 sudo mkdir -p /etc/containerd
-containerd config default
+containerd config default > /etc/containerd/config.toml
 sudo sed -e 's/SystemdCgroup = false/SystemdCgroup = true/g' -i /etc/containerd/config.toml
 sudo sed -e 's/pause:3.8/pause:3.9/g' -i /etc/containerd/config.toml
 sudo systemctl restart containerd
