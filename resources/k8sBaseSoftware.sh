@@ -46,10 +46,11 @@ sudo apt install containerd.io -y
 
 # Configure containerd and restart
 sudo mkdir -p /etc/containerd
-containerd config default | sudo tee /etc/containerd/config.toml
+containerd config default
 sudo sed -e 's/SystemdCgroup = false/SystemdCgroup = true/g' -i /etc/containerd/config.toml
 sudo sed -e 's/pause:3.8/pause:3.9/g' -i /etc/containerd/config.toml
 sudo systemctl restart containerd
+cat /etc/containerd/config.toml
 
 #Update crictl configuration to use an up to date notation for the Containerd´s runtime-endpoint
 sudo crictl config --set \
