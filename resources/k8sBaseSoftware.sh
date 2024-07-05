@@ -1,3 +1,7 @@
+####Script created by Enrique Torres <enrique.torresds@gmail.com>. You have the "left" to download, share, modify, enhance and use it....
+####just give the due credit if posted anywhere in the Dark or light web
+
+
 # Disable swap and persist this setting across reboots
 sudo swapoff -a
 sudo sed -e '/swap.img/s/^/#/g' -i /etc/fstab
@@ -53,5 +57,4 @@ sudo systemctl restart containerd
 cat /etc/containerd/config.toml
 
 #Update crictl configuration to use an up to date notation for the Containerd´s runtime-endpoint
-sudo crictl config --set \
-runtime-endpoint=unix://///var/run/containerd/containerd.sock
+sudo crictl config --set runtime-endpoint=unix://///var/run/containerd/containerd.sock
